@@ -18,6 +18,10 @@ const ProjectsSection = dynamic(
   () => import('@/components/sections/ProjectsSection'),
   { ssr: false }
 );
+const ResearchSection = dynamic(
+  () => import('@/components/sections/ResearchSection'),
+  { ssr: false }
+);
 const SkillsSection = dynamic(
   () => import('@/components/sections/SkillsSection'),
   { ssr: false }
@@ -48,6 +52,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <ProjectsSection />
+        <ResearchSection />
         <SkillsSection />
         <AboutSection />
         <ContactSection />

@@ -136,9 +136,6 @@ function RollingField() {
     <group ref={groupRef} rotation={[-0.28, 0, 0]} position={[0, -0.15, -3.8]}>
       <mesh geometry={geometry} material={filledMaterial} />
       <mesh geometry={geometry} material={wireMaterial} />
-      <mesh position={[5.8, 1.9, -1.5]} rotation={[0.72, 0.15, 0]} material={ringMaterial}>
-        <torusKnotGeometry args={[1.35, 0.022, 180, 12]} />
-      </mesh>
       <mesh position={[-6.8, -2.5, -2.4]} rotation={[-0.45, -0.35, 0.2]} material={ringMaterial}>
         <torusGeometry args={[1.5, 0.018, 10, 120]} />
       </mesh>

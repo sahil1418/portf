@@ -42,8 +42,8 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
 
     card.style.setProperty('--pointer-x', `${x * 100}%`);
     card.style.setProperty('--pointer-y', `${y * 100}%`);
-    card.style.setProperty('--tilt-x', `${(x - 0.5) * 4}deg`);
-    card.style.setProperty('--tilt-y', `${(0.5 - y) * 4}deg`);
+    card.style.setProperty('--tilt-x', `${(x - 0.5) * 8}deg`);
+    card.style.setProperty('--tilt-y', `${(0.5 - y) * 8}deg`);
   };
 
   const resetCardPosition = (event: React.PointerEvent<HTMLDivElement>) => {

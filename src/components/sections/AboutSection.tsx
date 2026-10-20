@@ -40,12 +40,12 @@ export default function AboutSection() {
                 <p>I actively practice data structures and algorithms, competitive programming, core CS subjects, and system design.</p>
               </article>
               <article className="highlight-item">
-                <span className="highlight-label">ML challenge</span>
-                <p>I was a National Finalist in the Hero Campus ML Challenge, placing in the top 24 among more than 200,000 participants. My team also ranked in the Top 5 of the Engineering Track.</p>
+                <span className="highlight-label">ML competitions</span>
+                <p>National Finalist with a Top 5 team out of 200,000+ participants in the Hero Campus ML Challenge, and Top 50 of 32,000+ teams in the Amazon ML Challenge.</p>
               </article>
               <article className="highlight-item">
                 <span className="highlight-label">Research</span>
-                <p>My research on physics-constrained soil moisture downscaling led to a first-author paper at IEEE MIGARS 2026.</p>
+                <p>2× IEEE published — HyperCP at ICDM 2026 (conformal prediction on supply-chain hypergraphs, 19.9% acceptance rate) and physics-constrained soil moisture downscaling at MIGARS 2026.</p>
               </article>
               <article className="highlight-item">
                 <span className="highlight-label">Projects</span>

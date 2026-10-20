@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home', id: 'home' },
   { label: 'Projects', href: '#projects', id: 'projects' },
+  { label: 'Research', href: '#research', id: 'research' },
   { label: 'Skills', href: '#skills', id: 'skills' },
   { label: 'About', href: '#about', id: 'about' },
   { label: 'Contact', href: '#contact', id: 'contact' },
@@ -14,10 +15,14 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      progressRef.current?.style.setProperty('transform', `scaleX(${scrollable > 0 ? window.scrollY / scrollable : 0})`);
 
       // Find active section
       const sections = NAV_LINKS.map((link) => ({
@@ -64,6 +69,19 @@ export default function Navbar() {
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .scroll-progress {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          height: 2px;
+          background: linear-gradient(90deg, var(--cyan-500), var(--violet-500), #f472b6);
+          box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+          transform: scaleX(0);
+          transform-origin: left;
+          pointer-events: none;
         }
 
         .navbar-inner {
@@ -201,6 +219,7 @@ export default function Navbar() {
       `}</style>
 
       <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
+        <div className="scroll-progress" ref={progressRef} aria-hidden="true" />
         <div className="navbar-inner">
           <div className="logo" onClick={() => handleNavClick('#home')}>
             SK<span className="logo-dot">.</span>

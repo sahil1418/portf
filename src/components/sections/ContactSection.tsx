@@ -1,6 +1,19 @@
 'use client';
 
+import type { FormEvent } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
+const CONTACT_EMAIL = 'sahil0329308@gmail.com';
+
+// No backend: hand the message to the visitor's mail client, pre-filled.
+function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  const from = String(data.get('email') ?? '');
+  const subject = encodeURIComponent(`Portfolio enquiry from ${from}`);
+  const body = encodeURIComponent(`${data.get('message') ?? ''}\n\n— ${from}`);
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
 
 export default function ContactSection() {
   const { ref, isVisible } = useScrollAnimation();
@@ -26,18 +39,17 @@ export default function ContactSection() {
         <nav className="social-links" aria-label="Social links">
           <a href="https://github.com/sahil1418" target="_blank" rel="noreferrer" className="social-card" aria-label="GitHub (opens in a new tab)">GitHub</a>
           <a href="https://www.linkedin.com/in/sahil-kumar-0a272028b/" target="_blank" rel="noreferrer" className="social-card" aria-label="LinkedIn (opens in a new tab)">LinkedIn</a>
-          <a href="#" className="social-card">Twitter / X</a>
-          <a href="mailto:sahil0329308@gmail.com" className="social-card">Email</a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="social-card">Email</a>
         </nav>
 
-        <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+        <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="contact-email">Your email</label>
-            <input id="contact-email" type="email" placeholder="name@company.com" className="form-input" required />
+            <input id="contact-email" name="email" type="email" placeholder="name@company.com" className="form-input" required />
           </div>
           <div className="form-group">
             <label htmlFor="contact-message">Your message</label>
-            <textarea id="contact-message" placeholder="How can we work together?" rows={4} className="form-input" required />
+            <textarea id="contact-message" name="message" placeholder="How can we work together?" rows={4} className="form-input" required />
           </div>
           <button type="submit" className="btn-submit">Send message <span aria-hidden="true">&rarr;</span></button>
         </form>
